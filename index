@@ -7,7 +7,38 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   </head>
   
-  <body>
-    <div class = "container">
-    <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT Majors</button> 
-    <button type='button' class="btn btn-primary" onClick="getData('BUS')">BUS Majors</button> 
+<body>
+  	<div class = "container">
+  		<h1>Select a Major</h1>
+ 		<button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT Majors</button> 
+ 		<button type='button' class="btn btn-primary" onClick="getData('BUS')">BUS Majors</button> 
+	
+		<h2>We Filter our Dataset By Major</h2>
+	
+		<div id = "List of Students">
+		<p> list will appear here</p>
+		</div>
+	</div>
+</body>
+
+
+<script type = "text/x-handlebars-template" id = "tableTemplate">
+	<table class = "table table-striped">
+		<tr> <th>Name</th> <th>Major</th> <th>Midterm</th> <th>Final</th> </tr>
+		{{#each rows}}
+			<tr> <td> {{name}} </td> <td> {{major}} </td> <td> {{midterm}} </td> <td> {{final}} </td> </tr>
+		{{/each}}
+	</table>
+</script>
+
+<script>
+
+	function getData(major) {
+		var request = new XMLHttpRequest () ;
+		request.open('GET', 'cit5students.JSON');
+		
+		request.onload = function() {
+		var data = JSon.parse(request.responseText);
+		
+		student_list = data.filter(getMajors)
+		function getMajors(name) {
