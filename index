@@ -15,7 +15,7 @@
 	
 		<h2>We Filter our Dataset By Major</h2>
 	
-		<div id = "List of Students">
+		<div id = "listOfStudents">
 		<p> list will appear here</p>
 		</div>
 	</div>
@@ -33,7 +33,7 @@
 
 <script>
 
-	function getData(major) {
+	function getData(selected_major) {
 		var request = new XMLHttpRequest () ;
 		request.open('GET', 'cit5students.JSON');
 		
@@ -42,3 +42,21 @@
 		
 		student_list = data.filter(getMajors)
 		function getMajors(name) {
+			return name.major == selected_major;
+		}
+		
+		if (request.status == 200) {
+		var templateText = document.getElementById('tableTemplate').innerHTML;
+		var compiledTemplateText = Handlebars.compile(templateText);
+		compiledHtml = compiledTemplateText ({ rows: student_list });
+		document.getElementById('listOfStudents').innerHTML = compiledHtml;
+		}
+		
+		else { 
+			document.querySelector('#listOfStudents').innerHTML= "there was an error, or no data list was found";
+		}
+		}
+	request.send(null);
+	}
+</script>
+</html>
