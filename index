@@ -1,1 +1,13 @@
-
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+	  <meta charset="UTF-8">
+	  <title>project 5</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  </head>
+  
+  <body>
+    <div class = "container">
+    <button type='button' class="btn btn-primary" onClick="getData('CIT')">CIT Majors</button> 
+    <button type='button' class="btn btn-primary" onClick="getData('BUS')">BUS Majors</button> 
